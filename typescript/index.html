@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON→TypeScript型変換 | 無料オンライン</title>
+<meta name="description" content="JSON文字列をTypeScript interfaceに自動変換する無料ツール。">
+<style>
+body{font-family:Arial;max-width:900px;margin:20px auto;}
+textarea{width:100%;height:220px;margin-top:10px;font-family:monospace;}
+button{margin-top:10px;padding:6px 12px;}
+nav{margin-bottom:15px;}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="/json-tools/">← トップ</a> |
+<a href="/json-tools/formatter/">JSON整形</a> |
+<a href="/json-tools/csharp/">C#変換</a>
+</nav>
+
+<h1>JSON → TypeScript 型変換</h1>
+
+<textarea id="input" placeholder='{"user_name":"Taro"}'></textarea>
+<button onclick="convert()">変換</button>
+<textarea id="output" readonly></textarea>
+
+<script>
+function convert(){
+ try{
+  const obj=JSON.parse(document.getElementById("input").value);
+  let result=generate(obj,"Root");
+  document.getElementById("output").value=result;
+ }catch(e){alert("JSONが不正です");}
+}
+function generate(obj,name){
+ let iface=`interface ${name} {\n`;
+ for(let k in obj){
+  iface+=`  ${k}: ${mapType(obj[k])};\n`;
+ }
+ iface+="}";
+ return iface;
+}
+function mapType(v){
+ if(typeof v==="number") return "number";
+ if(typeof v==="boolean") return "boolean";
+ return "string";
+}
+</script>
+
+</body>
+</html>
