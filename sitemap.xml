@@ -22,6 +22,16 @@
   </url>
 
   <url>
+    <loc>https://waizeark.github.io/json-tools/base64/</loc>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://waizeark.github.io/json-tools/uuid/</loc>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>https://waizeark.github.io/json-tools/privacy.html</loc>
     <priority>0.5</priority>
   </url>
