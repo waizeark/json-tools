@@ -37,4 +37,15 @@ function formatJSON(){
 function minifyJSON(){
  try{
   const obj=JSON.parse(document.getElementById("input").value);
-  document.getElementById("output").
+  document.getElementById("output").value=JSON.stringify(obj);
+ }catch(e){alert("JSONが不正です");}
+}
+</script>
+
+</body>
+<footer>
+<hr>
+<a href="/json-tools/privacy.html">プライバシーポリシー</a> |
+<a href="/json-tools/contact.html">お問い合わせ</a>
+</footer>
+</html>
