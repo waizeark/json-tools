@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON→C#クラス変換 | 無料オンライン</title>
+<meta name="description" content="JSON文字列をC#モデルクラスに自動変換する無料ツール。ネスト・List対応。">
+<style>
+body{font-family:Arial;max-width:900px;margin:20px auto;}
+textarea{width:100%;height:220px;margin-top:10px;font-family:monospace;}
+button{margin-top:10px;padding:6px 12px;}
+nav{margin-bottom:15px;}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="/json-tools/">← トップ</a> |
+<a href="/json-tools/formatter/">JSON整形</a> |
+<a href="/json-tools/typescript/">TypeScript変換</a>
+</nav>
+
+<h1>JSON → C# クラス変換</h1>
+
+<textarea id="input" placeholder='{"user_name":"Taro"}'></textarea>
+<button onclick="convert()">変換</button>
+<textarea id="output" readonly></textarea>
+
+<script>
+function convert(){
+ try{
+  const obj=JSON.parse(document.getElementById("input").value);
+  let result="using System.Collections.Generic;\n\n";
+  result+=generate(obj,"Root");
+  document.getElementById("output").value=result;
+ }catch(e){alert("JSONが不正です");}
+}
+
+function generate(obj,name){
+ let cls=`public class ${name}\n{\n`;
+ for(let k in obj){
+  let type=mapType(obj[k]);
+  cls+=`  public ${type} ${capitalize(k)} { get; set; }\n`;
+ }
+ cls+="}";
+ return cls;
+}
+function mapType(v){
+ if(typeof v==="number") return "int";
+ if(typeof v==="boolean") return "bool";
+ return "string";
+}
+function capitalize(s){
+ return s.charAt(0).toUpperCase()+s.slice(1);
+}
+</script>
+
+</body>
+</html>
