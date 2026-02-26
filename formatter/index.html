@@ -3,52 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JSON整形ツール | 無料オンライン</title>
-<meta name="description" content="JSON文字列を見やすく整形・圧縮できる無料オンラインツール。エラー確認にも対応。">
-<style>
-body{font-family:Arial;max-width:900px;margin:20px auto;}
-textarea{width:100%;height:220px;margin-top:10px;font-family:monospace;}
-button{margin-top:10px;padding:6px 12px;}
-nav{margin-bottom:15px;}
-</style>
+<title>JSON整形ツール | JSON Tools</title>
+<meta name="description" content="JSONを見やすく整形・圧縮できる無料オンラインツール。エラー表示にも対応。">
+<link rel="canonical" href="https://waizeark.github.io/json-tools/formatter/">
 </head>
+
 <body>
+<h1>JSON整形ツール</h1>
+<p>JSONを貼り付けるだけで整形・圧縮できます。</p>
 
-<nav>
-<a href="/json-tools/">← トップ</a> |
-<a href="/json-tools/csharp/">C#変換</a> |
-<a href="/json-tools/typescript/">TypeScript変換</a>
-</nav>
-
-<h1>JSON整形（フォーマッター）</h1>
-
-<textarea id="input" placeholder='{"name":"Taro","age":30}'></textarea>
+<textarea id="input" rows="10" style="width:100%"></textarea>
+<br><br>
 <button onclick="formatJSON()">整形</button>
 <button onclick="minifyJSON()">圧縮</button>
-<textarea id="output" readonly></textarea>
 
 <script>
 function formatJSON(){
- try{
-  const obj=JSON.parse(document.getElementById("input").value);
-  document.getElementById("output").value=JSON.stringify(obj,null,4);
- }catch(e){alert("JSONが不正です");}
+  try{
+    const obj = JSON.parse(document.getElementById("input").value);
+    document.getElementById("input").value = JSON.stringify(obj,null,2);
+  }catch(e){
+    alert("JSONエラー");
+  }
 }
 function minifyJSON(){
- try{
-  const obj=JSON.parse(document.getElementById("input").value);
-  document.getElementById("output").value=JSON.stringify(obj);
- }catch(e){alert("JSONが不正です");}
+  try{
+    const obj = JSON.parse(document.getElementById("input").value);
+    document.getElementById("input").value = JSON.stringify(obj);
+  }catch(e){
+    alert("JSONエラー");
+  }
 }
 </script>
-<h2>JSON整形ツールとは</h2>
-<p>
-このJSON整形ツールは、入力したJSONデータを読みやすくフォーマット（整形）できる無料オンラインツールです。APIレスポンスの確認やログ解析、デバッグ作業の効率化に役立ちます。インストール不要でブラウザ上だけで動作し、入力データはサーバーに送信されません。エンジニアやプログラマーが日常的に使える、シンプルで高速なJSONフォーマッターです。
-</p>
+
+<p><a href="../">← トップへ戻る</a></p>
 </body>
-<footer>
-<hr>
-<a href="/json-tools/privacy.html">プライバシーポリシー</a> |
-<a href="/json-tools/contact.html">お問い合わせ</a>
-</footer>
 </html>
